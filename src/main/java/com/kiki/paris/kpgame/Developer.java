@@ -1,26 +1,38 @@
 package com.kiki.paris.kpgame;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+public class Developer {
 
-import java.util.HashMap;
-import java.util.Map;
+	private String name;
+	private String stack;
+	private String linkedin;
 
-@SpringBootApplication
-@RestController
-public class KpgameApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(KpgameApplication.class, args);
+	public String getName() {
+		return name;
 	}
 
-	@RequestMapping("/home")
-	public Map<String, String> home() {
-		Map<String, String> map = new HashMap();
-		map.put("developer1", "Kiki");
-		map.put("developer2", "Paris");
-		return map;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStack() {
+		return stack;
+	}
+
+	public void setStack(String stack) {
+		this.stack = stack;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public Developer(String name, String stack, String linkedin) {
+		this.name = name;
+		this.stack = stack;
+		this.linkedin = linkedin;
 	}
 }
