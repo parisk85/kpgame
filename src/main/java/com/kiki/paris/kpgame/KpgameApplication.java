@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -36,6 +38,11 @@ public class KpgameApplication {
 		developers.add(new Developer("Paris", "Back-End Developer", "https://www.linkedin.com/in/vasiliki-loukoumi-41426492"));
 
 		return developers;
+	}
+
+	@RequestMapping(value = "hero/create", method = RequestMethod.POST)
+	public void create(@RequestParam String name) {
+		heroRepository.save(new Hero(name));
 	}
 
 	@RequestMapping("/heroes")
