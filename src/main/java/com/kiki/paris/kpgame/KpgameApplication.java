@@ -42,7 +42,7 @@ public class KpgameApplication {
 
 	@RequestMapping(value = "hero/create", method = RequestMethod.POST)
 	public void create(@RequestParam String name) {
-		heroRepository.save(new Hero(10L, name));
+		heroRepository.save(new Hero(name));
 	}
 
 	@RequestMapping("/heroes")
