@@ -42,16 +42,11 @@ public class KpgameApplication {
 
 	@RequestMapping(value = "hero/create", method = RequestMethod.POST)
 	public void create(@RequestParam String name) {
-		heroRepository.save(new Hero(name));
+		heroRepository.save(new Hero(10L, name));
 	}
 
 	@RequestMapping("/heroes")
-	public List<String> heroes() {
-		List<String> heroList = new ArrayList<>();
-
-		for (Hero h : heroRepository.findAll())
-			heroList.add(h.getName());
-
-		return heroList;
+	public List<Hero> heroes() {
+		return (ArrayList) heroRepository.findAll();
 	}
 }
