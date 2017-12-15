@@ -1,16 +1,28 @@
 package com.kiki.paris.kpgame;
 
+import com.kiki.paris.kpgame.model.Hero;
+import com.kiki.paris.kpgame.repositories.HeroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 @RestController
+@EnableAutoConfiguration
 public class KpgameApplication {
+
+	@Autowired
+	HeroRepository heroRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KpgameApplication.class, args);
@@ -24,5 +36,15 @@ public class KpgameApplication {
 		developers.add(new Developer("Paris", "Back-End Developer", "https://www.linkedin.com/in/vasiliki-loukoumi-41426492"));
 
 		return developers;
+	}
+
+	@RequestMapping("/heroes")
+	public List<String> heroes() {
+		List<String> heroList = new ArrayList<>();
+
+		for (Hero h : heroRepository.findAll())
+			heroList.add(h.getName());
+
+		return heroList;
 	}
 }
